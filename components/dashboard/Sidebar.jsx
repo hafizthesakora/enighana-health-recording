@@ -45,7 +45,7 @@ export default function Sidebar({ showSidebar, setShowSidebar }) {
       href: '/dashboard/inventory/warehouse',
     },
     {
-      title: 'Inventory Adjustments',
+      title: 'Inventory Assignment',
       href: '/dashboard/inventory/adjustments',
     },
     {
@@ -58,44 +58,6 @@ export default function Sidebar({ showSidebar, setShowSidebar }) {
     },
   ];
 
-  const salesLink = [
-    {
-      title: 'Customers',
-      href: '',
-    },
-    {
-      title: 'Sales Orders',
-      href: '',
-    },
-    {
-      title: 'Packages',
-      href: '',
-    },
-    {
-      title: 'Shipments',
-      href: '',
-    },
-    {
-      title: 'Invoices',
-      href: '',
-    },
-    {
-      title: 'Sales Receipts',
-      href: '',
-    },
-    {
-      title: 'Payment Received',
-      href: '',
-    },
-    {
-      title: 'Sales Returns',
-      href: '',
-    },
-    {
-      title: 'Credit Notes',
-      href: '',
-    },
-  ];
   return (
     <div
       className={`${
@@ -163,7 +125,10 @@ export default function Sidebar({ showSidebar, setShowSidebar }) {
             <Signal className="w-4 h-4" />
             <span>Reports</span>
           </Link>
-          <Link className="p-2 flex items-center space-x-2" href="">
+          <Link
+            className="p-2 flex items-center space-x-2"
+            href="/dashboard/documents"
+          >
             <Files className="w-4 h-4" />
             <span>Documents</span>
           </Link>
