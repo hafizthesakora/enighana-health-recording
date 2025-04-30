@@ -33,7 +33,7 @@ export default function LoginPage() {
       <div className="max-w-md w-full space-y-8 p-10 bg-white rounded-xl shadow-lg">
         <div className="text-center">
           <img
-            src="/logo.svg"
+            src="/logo.png"
             alt="ENI Ghana Logo"
             className="mx-auto h-16 w-auto"
           />

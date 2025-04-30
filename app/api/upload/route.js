@@ -1,8 +1,5 @@
 // app/api/documents/upload/route.js
 export const runtime = 'nodejs';
-export const config = {
-  api: { bodyParser: false },
-};
 
 import { NextResponse } from 'next/server';
 import { writeFile } from 'fs/promises';

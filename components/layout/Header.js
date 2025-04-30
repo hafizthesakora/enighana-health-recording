@@ -20,12 +20,12 @@ export default function Header() {
           <Link href="/dashboard">
             <span className="flex items-center">
               <img
-                src="/logo.svg"
+                src="/logo.png"
                 alt="ENI Ghana Logo"
-                className="h-8 w-auto mr-2"
+                className="h-10 w-auto mr-2"
               />
               <span className="text-xl font-bold text-green-700">
-                ENI Health Recording System
+                Health Recording System
               </span>
             </span>
           </Link>
