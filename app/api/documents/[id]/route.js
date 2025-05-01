@@ -1,6 +1,5 @@
 // app/api/documents/[id]/route.js
 export const runtime = 'nodejs';
-export const config = { api: { bodyParser: false } };
 
 import { NextResponse } from 'next/server';
 import { unlink } from 'fs/promises';
