@@ -13,7 +13,7 @@ export default function HomePage() {
       <section className="flex-grow bg-green-50 flex items-center">
         <div className="max-w-4xl mx-auto px-6 py-16 text-center">
           <h1 className="text-4xl font-extrabold text-green-800 mb-4">
-            Welcome to ENI Ghana Health System
+            Welcome to ENI Ghana Health Records System
           </h1>
           <p className="text-lg text-gray-700 mb-8">
             A secure, QR-enabled platform for managing employee fitness-to-work
