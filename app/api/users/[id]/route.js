@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import prisma from '../../../../lib/prisma';
-import { withAuth } from '../../../../lib/middleware';
+import prisma from '@/lib/prisma';
+import { withAuth } from '@/lib/middleware';
 
 async function handleGetRequest(req, { params }) {
   try {
