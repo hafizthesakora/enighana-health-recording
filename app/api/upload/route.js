@@ -5,8 +5,8 @@ import { NextResponse } from 'next/server';
 import { writeFile } from 'fs/promises';
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
-import prisma from '../../../../lib/prisma';
-import { withAuth } from '../../../../lib/middleware';
+import prisma from '@/lib/prisma';
+import { withAuth } from '@/lib/middleware';
 
 export const POST = withAuth(async (req) => {
   const formData = await req.formData();
