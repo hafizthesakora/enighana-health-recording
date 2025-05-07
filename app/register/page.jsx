@@ -1,4 +1,5 @@
 //app/register/page.jsx
+export const dynamic = 'force-dynamic';
 
 import RegisterForm from '@/components/auth/RegisterForm';
 

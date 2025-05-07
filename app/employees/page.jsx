@@ -1,4 +1,5 @@
 // app/employees/page.js
+export const dynamic = 'force-dynamic';
 import Sidebar from '@/components/layout/Sidebar';
 import Header from '@/components/layout/Header';
 import EmployeesList from '@/components/employees/EmployeesList';

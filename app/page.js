@@ -1,4 +1,5 @@
 // File: app/page.js
+export const dynamic = 'force-dynamic';
 import Link from 'next/link';
 
 export const metadata = {
