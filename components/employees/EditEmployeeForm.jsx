@@ -92,7 +92,8 @@ export default function EditEmployeeForm({ initialData }) {
           className="w-full border border-gray-300 rounded-md px-3 py-2"
         >
           <option value="">Select…</option>
-          <option value="PERMANENT">Permanent</option>
+          <option value="EXPAT">Expat</option>
+          <option value="NATIONAL">National</option>
           <option value="CONTRACT">Contract</option>
           <option value="INTERN">Intern</option>
           <option value="NATIONAL_SERVICE">National Service</option>

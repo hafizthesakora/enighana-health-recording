@@ -26,8 +26,9 @@ enum FileType {
 
 // ← new enum
 enum Typology {
-  CONTRACT
-  PERMANENT
+  EXPAT
+  NATIONAL
+  CONTRACTOR
   INTERN
   NATIONAL_SERVICE
 }

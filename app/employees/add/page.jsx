@@ -145,7 +145,8 @@ export default function AddEmployeePage() {
                   } rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-green-500 focus:border-green-500`}
                 >
                   <option value="">Select typology</option>
-                  <option value="PERMANENT">Permanent Staff</option>
+                  <option value="EXPAT">Expat</option>
+                  <option value="NATIONAL">National</option>
                   <option value="CONTRACT">Contract Staff</option>
                   <option value="INTERN">Intern</option>
                   <option value="NATIONAL_SERVICE">
