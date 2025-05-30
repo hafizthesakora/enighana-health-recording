@@ -56,6 +56,7 @@ model Document {
   originalName String
   fileType     FileType
   mimeType     String
+  fileData     String? 
   size         Int
   uploadedBy   String
   uploadDate   DateTime   @default(now())

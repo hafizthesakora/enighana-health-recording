@@ -2,8 +2,6 @@
 export const runtime = 'nodejs';
 
 import { NextResponse } from 'next/server';
-import { writeFile } from 'fs/promises';
-import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
 import prisma from '@/lib/prisma';
 import { withAuth } from '@/lib/middleware';
@@ -22,14 +20,16 @@ export const POST = withAuth(async (req) => {
   }
 
   const updateData = {};
+
   // Helper to process one file
   async function handleOne(file, field) {
     const buf = Buffer.from(await file.arrayBuffer());
-    const ext = path.extname(file.name);
-    const filename = `${uuidv4()}${ext}`;
-    const out = path.join(process.cwd(), 'public', 'uploads', filename);
-    await writeFile(out, buf);
-    // create Document row
+    const filename = `${uuidv4()}${path.extname(file.name)}`;
+
+    // Store file data as base64 in database instead of filesystem
+    const fileDataBase64 = buf.toString('base64');
+
+    // Create Document row with file data
     const doc = await prisma.document.create({
       data: {
         filename,
@@ -39,8 +39,10 @@ export const POST = withAuth(async (req) => {
         mimeType: file.type,
         size: file.size,
         uploadedBy: req.user.id,
+        fileData: fileDataBase64, // Store the actual file data
       },
     });
+
     // assign to user
     if (field === 'fitnessDoc') updateData.fitnessDocId = doc.id;
     else updateData.medicalDocId = doc.id;
