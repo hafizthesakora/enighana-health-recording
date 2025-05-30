@@ -12,6 +12,7 @@ export default function ScanViewPage({ params }) {
   const [error, setError] = useState('');
   const [showPin, setShowPin] = useState(false);
   const [medicalVisible, setMedicalVisible] = useState(false);
+  const [activeTab, setActiveTab] = useState('fitness'); // For mobile tab switching
   const router = useRouter();
 
   useEffect(() => {
@@ -27,41 +28,127 @@ export default function ScanViewPage({ params }) {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
-      <main className="flex-1 flex flex-col p-6">
-        <h1 className="text-2xl font-bold mb-4">{user.name}’s Documents</h1>
+      <main className="flex-1 flex flex-col p-2 sm:p-6">
+        <h1 className="text-xl sm:text-2xl font-bold mb-4 px-2 sm:px-0">
+          {user.name}'s Documents
+        </h1>
 
-        <div className="flex-1 flex flex-col md:flex-row gap-6">
-          {/* FTW */}
-          <section className="flex-1 flex flex-col">
+        {/* Mobile Tab Navigation */}
+        <div className="flex md:hidden mb-4 bg-white rounded-lg shadow-sm">
+          <button
+            onClick={() => setActiveTab('fitness')}
+            className={`flex-1 py-3 px-4 text-sm font-medium rounded-l-lg transition-colors ${
+              activeTab === 'fitness'
+                ? 'bg-blue-50 text-blue-700 border-b-2 border-blue-500'
+                : 'text-gray-500 hover:text-gray-700'
+            }`}
+          >
+            Fitness to Work
+          </button>
+          <button
+            onClick={() => setActiveTab('medical')}
+            className={`flex-1 py-3 px-4 text-sm font-medium rounded-r-lg transition-colors ${
+              activeTab === 'medical'
+                ? 'bg-blue-50 text-blue-700 border-b-2 border-blue-500'
+                : 'text-gray-500 hover:text-gray-700'
+            }`}
+          >
+            Medical Records
+          </button>
+        </div>
+
+        {/* Desktop Layout */}
+        <div className="hidden md:flex flex-1 gap-6">
+          {/* FTW Section */}
+          <section className="flex-1 flex flex-col min-h-0">
             <h2 className="font-medium mb-2">Fitness to Work</h2>
             {user.fitnessDoc?.filename ? (
-              <iframe
-                src={`/uploads/${user.fitnessDoc.filename}`}
-                className="flex-1 w-full border"
-                style={{ minHeight: 0 }}
-              />
+              <div className="flex-1 bg-white rounded-lg shadow-sm overflow-hidden">
+                <iframe
+                  src={`/uploads/${user.fitnessDoc.filename}`}
+                  className="w-full h-full border-0"
+                  style={{ minHeight: '600px' }}
+                  title="Fitness to Work Document"
+                />
+              </div>
             ) : (
-              <p className="text-gray-500">No FTW uploaded.</p>
+              <div className="flex-1 bg-white rounded-lg shadow-sm flex items-center justify-center">
+                <p className="text-gray-500">No FTW uploaded.</p>
+              </div>
             )}
           </section>
 
-          {/* Medical */}
-          <section className="flex-1 flex flex-col">
+          {/* Medical Section */}
+          <section className="flex-1 flex flex-col min-h-0">
             <h2 className="font-medium mb-2">Medical Records</h2>
             {medicalVisible ? (
-              <iframe
-                src={`/uploads/${user.medicalDoc.filename}`}
-                className="flex-1 w-full border"
-                style={{ minHeight: 0 }}
-              />
+              <div className="flex-1 bg-white rounded-lg shadow-sm overflow-hidden">
+                <iframe
+                  src={`/uploads/${user.medicalDoc.filename}`}
+                  className="w-full h-full border-0"
+                  style={{ minHeight: '600px' }}
+                  title="Medical Records Document"
+                />
+              </div>
             ) : user.medicalDoc?.filename ? (
-              <Button onClick={() => setShowPin(true)}>
-                Enter PIN to View
-              </Button>
+              <div className="flex-1 bg-white rounded-lg shadow-sm flex items-center justify-center">
+                <Button onClick={() => setShowPin(true)}>
+                  Enter PIN to View
+                </Button>
+              </div>
             ) : (
-              <p className="text-gray-500">No medical record uploaded.</p>
+              <div className="flex-1 bg-white rounded-lg shadow-sm flex items-center justify-center">
+                <p className="text-gray-500">No medical record uploaded.</p>
+              </div>
             )}
           </section>
+        </div>
+
+        {/* Mobile Layout */}
+        <div className="flex md:hidden flex-1 flex-col min-h-0">
+          {activeTab === 'fitness' && (
+            <section className="flex-1 flex flex-col min-h-0">
+              {user.fitnessDoc?.filename ? (
+                <div className="flex-1 bg-white rounded-lg shadow-sm overflow-hidden">
+                  <iframe
+                    src={`/uploads/${user.fitnessDoc.filename}`}
+                    className="w-full h-full border-0"
+                    style={{ minHeight: 'calc(100vh - 200px)' }}
+                    title="Fitness to Work Document"
+                  />
+                </div>
+              ) : (
+                <div className="flex-1 bg-white rounded-lg shadow-sm flex items-center justify-center">
+                  <p className="text-gray-500">No FTW uploaded.</p>
+                </div>
+              )}
+            </section>
+          )}
+
+          {activeTab === 'medical' && (
+            <section className="flex-1 flex flex-col min-h-0">
+              {medicalVisible ? (
+                <div className="flex-1 bg-white rounded-lg shadow-sm overflow-hidden">
+                  <iframe
+                    src={`/uploads/${user.medicalDoc.filename}`}
+                    className="w-full h-full border-0"
+                    style={{ minHeight: 'calc(100vh - 200px)' }}
+                    title="Medical Records Document"
+                  />
+                </div>
+              ) : user.medicalDoc?.filename ? (
+                <div className="flex-1 bg-white rounded-lg shadow-sm flex items-center justify-center">
+                  <Button onClick={() => setShowPin(true)}>
+                    Enter PIN to View
+                  </Button>
+                </div>
+              ) : (
+                <div className="flex-1 bg-white rounded-lg shadow-sm flex items-center justify-center">
+                  <p className="text-gray-500">No medical record uploaded.</p>
+                </div>
+              )}
+            </section>
+          )}
         </div>
       </main>
 
