@@ -65,3 +65,17 @@ model Document {
   userFitness  User[]     @relation("FitnessDocument")
   userMedical  User[]     @relation("MedicalDocument")
 }
+
+model AuditLog {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  employee      User     @relation(fields: [employeeId], references: [id])
+  employeeId    String   @db.ObjectId
+  accessedBy    User     @relation(fields: [accessedById], references: [id])
+  accessedById  String   @db.ObjectId
+  recordType    FileType             // FITNESS_CERTIFICATE or MEDICAL_RECORD
+  accessedAt    DateTime @default(now())
+
+  @@index([employeeId])
+  @@index([accessedById])
+}
+
